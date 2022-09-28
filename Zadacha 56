@@ -1,0 +1,58 @@
+Console.Clear();
+
+void InputMatrix(int[,] matrix)
+{
+for (int i = 0; i < matrix.GetLength(0); i++)
+{
+for (int j = 0; j < matrix.GetLength(1); j++)
+matrix[i, j] = new Random().Next(0, 11);
+}
+}
+// Процедура для вывода нашей матрицы c помощью табуляции "\t" (для выравнивания текста в строках)
+
+void PrintMatrix(int[,] matrix)
+{
+Console.WriteLine();
+for (int i = 0; i < matrix.GetLength(0); i++)
+{
+for (int j = 0; j < matrix.GetLength(1); j++)
+Console.Write(matrix[i, j] + " \t");
+Console.WriteLine();
+}
+}
+
+void ResultMatrix(int[,] matrix)
+{
+     int minSum = 0;
+     int index = 0;
+     Console.WriteLine();
+
+ for (int i = 0; i < matrix.GetLength(0); i++)
+ {
+     int sum = 0;
+     for (int j = 0; j < matrix.GetLength(1); j++)
+     {
+         sum += matrix[i, j];
+     }   
+     Console.WriteLine($"Сумма {i + 1} строки = {sum}");
+     if (i == 0)
+         {
+             minSum = sum;
+         }
+         else if (sum < minSum)
+         {
+             minSum = sum;
+             index = i;
+         }
+ }
+     Console.WriteLine();
+     Console.WriteLine($"Строка с наименьшей суммой элементов массива: {index + 1} ");
+}
+Console.Write("Введите кол-во строк: ");
+ int n = Convert.ToInt32(Console.ReadLine());
+ Console.Write("Введите кол-во стобцов: ");
+ int m = Convert.ToInt32(Console.ReadLine());
+ int[,] matrix = new int[n, m];
+ InputMatrix(matrix);
+ PrintMatrix(matrix);
+ ResultMatrix(matrix);
